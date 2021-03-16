@@ -412,7 +412,7 @@ class DocStringConverter {
     }
 
     private _beginMinIndentCodeBlock(state: State): void {
-        this._appendLine('```');
+        this._appendLine('```python');
         this._pushAndSetState(state);
         this._blockIndent = this._currentIndent();
     }
