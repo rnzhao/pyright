@@ -2536,10 +2536,10 @@ export class CompletionProvider {
                                                     /* inferTypeIfNeeded */ true
                                                 ) || UnknownType.create();
                                             typeDetail =
+                                                '(property) ' +
                                                 name +
                                                 ': ' +
-                                                this._evaluator.printType(propertyType, /* expandTypeAlias */ false) +
-                                                ' (property)';
+                                                this._evaluator.printType(propertyType, /* expandTypeAlias */ false);
                                         } else if (isOverloadedFunction(functionType)) {
                                             // 35 is completion tooltip's default width size
                                             typeDetail = getOverloadedFunctionTooltip(
@@ -2550,7 +2550,6 @@ export class CompletionProvider {
                                         } else {
                                             typeDetail =
                                                 name +
-                                                ': ' +
                                                 this._evaluator.printType(functionType, /* expandTypeAlias */ false);
                                         }
                                     }

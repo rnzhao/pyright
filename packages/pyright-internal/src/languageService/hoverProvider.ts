@@ -255,10 +255,17 @@ export class HoverProvider {
                 if (type && isOverloadedFunction(type)) {
                     this._addResultsPart(
                         parts,
-                        `(${label})\n${getOverloadedFunctionTooltip(type, evaluator)}`,
+                        getOverloadedFunctionTooltip(type, evaluator),
                         /* python */ true
                     );
-                } else {
+                } else if (label === 'function' || label === 'method') {  // single-signature function
+                    // slice(2) to remove the ': ' substring after function name
+                    this._addResultsPart(
+                        parts,
+                        node.value + this._getTypeText(node, evaluator).slice(2),
+                        true
+                    );
+                } else {  // property
                     this._addResultsPart(
                         parts,
                         `(${label}) ` + node.value + this._getTypeText(node, evaluator),
